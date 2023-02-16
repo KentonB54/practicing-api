@@ -1,6 +1,19 @@
-export const Posts = (props) => {
+import {getAllPosts} from '../api'
+import React, { useState, useEffect } from 'react';
 
-    const {posts} = props;
+
+export const Posts = () => {
+
+    const [posts, setPosts] = useState([]);
+  
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const {data} = await getAllPosts()
+      setPosts(data.posts)
+  }
+  
+    fetchPosts();
+  }, [])
 
     return (
     <div className="contentContainer">
